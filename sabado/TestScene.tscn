@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://clkicwwjpts4d"]
+
+[ext_resource type="Script" uid="uid://w4q6wv5616hf" path="res://Player/player_character.gd" id="1_cguwc"]
+[ext_resource type="Script" uid="uid://clp5bpr4iwnul" path="res://Camera/player_camera_controller.gd" id="2_go42g"]
+[ext_resource type="PackedScene" uid="uid://c7tci2nakt7b7" path="res://TestLevel.blend" id="2_wicfy"]
+[ext_resource type="Script" uid="uid://bu7ir07jpt16x" path="res://Camera/sub_camera.gd" id="4_go42g"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4ptq8"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sb12i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cguwc"]
+albedo_color = Color(1, 0.47785366, 0.41005626, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gbhdq"]
+height = 0.188
+
+[node name="TestLevel" type="Node3D" unique_id=1307386189]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=640774422]
+transform = Transform3D(1, 0, 0, 0, 0.48863646, 0.8724875, 0, -0.8724875, 0.48863646, 0, 0, 0)
+light_energy = 0.467
+sky_mode = 1
+
+[node name="PlayerCharacter" type="CharacterBody3D" parent="." unique_id=874274127]
+script = ExtResource("1_cguwc")
+metadata/_custom_type_script = "uid://w4q6wv5616hf"
+
+[node name="P_Camera_Controller" type="Node3D" parent="PlayerCharacter" unique_id=2109146976]
+script = ExtResource("2_go42g")
+metadata/_custom_type_script = "uid://bfrunnd5vhkan"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter" unique_id=518114114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_4ptq8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerCharacter/CollisionShape3D" unique_id=1706971152]
+mesh = SubResource("CapsuleMesh_sb12i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerCharacter/CollisionShape3D/MeshInstance3D" unique_id=193511545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53120685, 0.20250654)
+material_override = SubResource("StandardMaterial3D_cguwc")
+mesh = SubResource("CylinderMesh_gbhdq")
+
+[node name="TestLevel" parent="." unique_id=8920926 instance=ExtResource("2_wicfy")]
+
+[node name="Camera" type="Camera3D" parent="." unique_id=953210503 node_paths=PackedStringArray("_controller")]
+transform = Transform3D(0.7169106, 0.4619556, -0.5221458, 0, 0.7489557, 0.66262007, 0.69716513, -0.47503936, 0.5369343, -2.127, 4.038, 2.095)
+script = ExtResource("4_go42g")
+_controller = NodePath("../PlayerCharacter/P_Camera_Controller")
+metadata/_custom_type_script = "uid://bu7ir07jpt16x"
