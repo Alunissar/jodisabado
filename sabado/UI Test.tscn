@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://xgc1mu4cm6ky"]
+
+[ext_resource type="Script" uid="uid://dy3ib8djiphj7" path="res://UI/UIScalingAnimator.gd" id="1_omiw4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x41og"]
+
+[node name="UiTest" type="Node3D" unique_id=1509388993]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=371938632]
+mesh = SubResource("BoxMesh_x41og")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=417152285]
+transform = Transform3D(0.70710677, -0.3535534, 0.61237246, 0, 0.8660254, 0.5, -0.70710677, -0.3535534, 0.61237246, 1.347081, 1.1644405, 1.347081)
+
+[node name="Control" type="Control" parent="." unique_id=261518582]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control" unique_id=1942560674]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 256.0
+offset_right = 736.0
+offset_bottom = 384.0
+
+[node name="UIScalingAnimator2" type="Node" parent="Control/Button" unique_id=206882711]
+script = ExtResource("1_omiw4")
+hover_scale = Vector2(2, 2)
+time = 1.0
+transition_type = 6
+metadata/_custom_type_script = "uid://dy3ib8djiphj7"
