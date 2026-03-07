@@ -2,10 +2,11 @@ extends CharacterBody3D
 class_name PlayerCharacter
 
 @onready var camera: Camera3D = $"../Camera"
+@onready var mesh: CollisionShape3D = $CollisionShape3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+const ROT_SPEED = 5
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -20,11 +21,13 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		
+		var target_angle = Vector3.BACK.signed_angle_to(direction, Vector3.UP)
+		mesh.global_rotation.y = lerp_angle(mesh.global_rotation.y, target_angle, ROT_SPEED*delta)
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-
-	var tweener  = create_tween()
 	
