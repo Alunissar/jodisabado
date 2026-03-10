@@ -4,7 +4,7 @@ class_name SubCamera
 @export var _controller : CameraController
 
 func _ready() -> void:
-	_controller._camera = self
+	_controller.set_camera(self)
 	pass
 
 func set_controller(contr : CameraController) -> void:

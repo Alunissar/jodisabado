@@ -6,7 +6,7 @@ class_name PlayerCharacter
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const ROT_SPEED = 5
+const ROT_SPEED = 15
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -23,7 +23,15 @@ func _physics_process(delta: float) -> void:
 		velocity.z = direction.z * SPEED
 		
 		var target_angle = Vector3.BACK.signed_angle_to(direction, Vector3.UP)
-		mesh.global_rotation.y = lerp_angle(mesh.global_rotation.y, target_angle, ROT_SPEED*delta)
+		var current_angle = Vector3.BACK.signed_angle_to(mesh.global_basis.z, Vector3.UP)
+		
+		target_angle = lerp_angle(current_angle, target_angle, 1)
+		
+		if(abs(target_angle - current_angle) > ROT_SPEED * delta):
+			mesh.global_rotation.y += sign(target_angle - current_angle) * ROT_SPEED * delta
+		else:
+			mesh.global_rotation.y += target_angle - current_angle
+		
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)

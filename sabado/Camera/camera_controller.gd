@@ -10,11 +10,12 @@ func resign_camera() -> void:
 
 func set_camera(cam: SubCamera) -> void:
 	_camera = cam
-	_camera.set_controller(self)
 	pass
 
-func _process(delta: float) -> void:
-	_update_pos(delta)
+func _physics_process(delta: float) -> void:
+	if(_camera):
+		_update_pos(delta)
+		pass
 	pass
 
 func _update_pos(delta: float):
