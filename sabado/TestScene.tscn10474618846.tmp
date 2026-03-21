@@ -36,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("2_go42g")
 orbit_distance = 5.0
 orbit_height = 2.0
-orbit_speed = 3.0
+orbit_speed = 5.0
 easing = 20.0
 metadata/_custom_type_script = "uid://bfrunnd5vhkan"
 
