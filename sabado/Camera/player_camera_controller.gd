@@ -4,6 +4,7 @@ class_name PlayerCameraController
 @export var orbit_distance : float
 @export var orbit_height : float
 @export var orbit_speed : float
+@onready var player_char: PlayerCharacter = $".."
 
 var _wall_distance : float
 var _rotation : float
@@ -41,6 +42,8 @@ func _process(delta: float) -> void:
 	if(Input.is_action_pressed("in_rot_left")):
 		_rotation = lerp_angle(_rotation, _rotation - orbit_speed * delta, 1)
 		pass
+	if(Input.is_action_pressed("in_target")):
+		_rotation = lerp_angle(_rotation, player_char.mesh.global_rotation.y ,1)
 
 func _physics_process(delta: float) -> void:
 	super(delta)

@@ -48,7 +48,7 @@ shape = SubResource("CapsuleShape3D_go42g")
 mesh = SubResource("CapsuleMesh_sb12i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerCharacter/CollisionShape3D/MeshInstance3D" unique_id=193511545]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53120685, 0.20250654)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53120685, -0.11125541)
 material_override = SubResource("StandardMaterial3D_cguwc")
 mesh = SubResource("CylinderMesh_gbhdq")
 

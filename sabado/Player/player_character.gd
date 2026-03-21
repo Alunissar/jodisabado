@@ -38,16 +38,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_vec.z
 		
 		# Rotate
-		var target_angle = Vector3.BACK.signed_angle_to(move_vec, Vector3.UP)
-		var current_angle = Vector3.BACK.signed_angle_to(mesh.global_basis.z, Vector3.UP)
+		if(not Input.is_action_pressed("in_target")):
+			var target_angle = Vector3.BACK.signed_angle_to(move_vec, Vector3.UP)
+			var current_angle = Vector3.BACK.signed_angle_to(-mesh.global_basis.z, Vector3.UP)
+			
+			target_angle = lerp_angle(current_angle, target_angle, 1)
 		
-		target_angle = lerp_angle(current_angle, target_angle, 1)
-		
-		if(abs(target_angle - current_angle) > ROT_SPEED * delta):
-			mesh.global_rotation.y += sign(target_angle - current_angle) * ROT_SPEED * delta
-		else:
-			mesh.global_rotation.y += target_angle - current_angle
-			pass
+			if(abs(target_angle - current_angle) > ROT_SPEED * delta):
+				mesh.global_rotation.y += sign(target_angle - current_angle) * ROT_SPEED * delta
+			else:
+				mesh.global_rotation.y += target_angle - current_angle
+				pass
 		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
