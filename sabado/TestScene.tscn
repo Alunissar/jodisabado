@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://clp5bpr4iwnul" path="res://Camera/player_camera_controller.gd" id="2_go42g"]
 [ext_resource type="PackedScene" uid="uid://c7tci2nakt7b7" path="res://TestLevel.blend" id="2_wicfy"]
 [ext_resource type="Script" uid="uid://bu7ir07jpt16x" path="res://Camera/sub_camera.gd" id="4_go42g"]
+[ext_resource type="Script" uid="uid://dtiskfbabluwt" path="res://Interactables/Button/interactable_button.gd" id="5_sreuk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_go42g"]
 
@@ -14,6 +15,13 @@ albedo_color = Color(1, 0.47785366, 0.41005626, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gbhdq"]
 height = 0.188
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sreuk"]
+radius = 0.75
+
+[sub_resource type="SphereMesh" id="SphereMesh_tq6uv"]
+radial_segments = 12
+rings = 6
 
 [node name="TestLevel" type="Node3D" unique_id=1307386189]
 
@@ -52,6 +60,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53120685, -0.11125541)
 material_override = SubResource("StandardMaterial3D_cguwc")
 mesh = SubResource("CylinderMesh_gbhdq")
 
+[node name="Interaction_RayCast3D" type="RayCast3D" parent="PlayerCharacter" unique_id=2098333801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="TestLevel" parent="." unique_id=1043555587 instance=ExtResource("2_wicfy")]
 
 [node name="Camera" type="Camera3D" parent="." unique_id=953210503 node_paths=PackedStringArray("_controller")]
@@ -59,3 +73,16 @@ transform = Transform3D(0.7169106, 0.4619556, -0.5221458, 0, 0.7489557, 0.662620
 script = ExtResource("4_go42g")
 _controller = NodePath("../PlayerCharacter/P_Camera_Controller")
 metadata/_custom_type_script = "uid://bu7ir07jpt16x"
+
+[node name="InteractableTemplate" type="Area3D" parent="." unique_id=1492555717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("5_sreuk")
+metadata/_custom_type_script = "uid://dtiskfbabluwt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableTemplate" unique_id=1820964647]
+shape = SubResource("SphereShape3D_sreuk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InteractableTemplate" unique_id=1314419472]
+mesh = SubResource("SphereMesh_tq6uv")

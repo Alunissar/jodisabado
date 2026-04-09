@@ -3,6 +3,7 @@ class_name PlayerCharacter
 
 @onready var camera: Camera3D = $"../Camera"
 @onready var mesh: CollisionShape3D = $CollisionShape3D
+@onready var ray_cast: RayCast3D = $Interaction_RayCast3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -17,6 +18,11 @@ func _input(event: InputEvent) -> void:
 	input_dir = camera.basis * Vector3(input.x, 0, input.y)
 	input_dir.y = 0
 	input_dir = input_dir.normalized()
+	
+	if Input.is_action_just_pressed("in_act"):
+		ray_cast.target_position = -mesh.global_basis.z
+		
+		pass
 	pass
 
 func _physics_process(delta: float) -> void:

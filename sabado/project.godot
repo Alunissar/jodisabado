@@ -444,6 +444,11 @@ in_rot_right={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Default"
+3d_physics/layer_2="Interactions"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
