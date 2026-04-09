@@ -13,15 +13,21 @@ var input_dir : Vector3
 
 func _input(event: InputEvent) -> void:
 	
+	# direction input updating
 	var input = Input.get_vector("in_left", "in_right", "in_up", "in_down")
 	
 	input_dir = camera.basis * Vector3(input.x, 0, input.y)
 	input_dir.y = 0
 	input_dir = input_dir.normalized()
 	
+	# interaction key handling
 	if Input.is_action_just_pressed("in_act"):
 		ray_cast.target_position = -mesh.global_basis.z
-		
+		if ray_cast.is_colliding():
+			var col = ray_cast.get_collider()
+			if col is Interactable:
+				col.interact()
+			
 		pass
 	pass
 

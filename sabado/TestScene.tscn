@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7tci2nakt7b7" path="res://TestLevel.blend" id="2_wicfy"]
 [ext_resource type="Script" uid="uid://bu7ir07jpt16x" path="res://Camera/sub_camera.gd" id="4_go42g"]
 [ext_resource type="Script" uid="uid://dtiskfbabluwt" path="res://Interactables/Button/interactable_button.gd" id="5_sreuk"]
+[ext_resource type="Script" uid="uid://50vmjfua4dx2" path="res://Activatables/animate_on_act.gd" id="6_tq6uv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_go42g"]
 
@@ -22,6 +23,64 @@ radius = 0.75
 [sub_resource type="SphereMesh" id="SphereMesh_tq6uv"]
 radial_segments = 12
 rings = 6
+
+[sub_resource type="BoxMesh" id="BoxMesh_sreuk"]
+size = Vector3(1, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tq6uv"]
+size = Vector3(1, 2, 3)
+
+[sub_resource type="Animation" id="Animation_12c36"]
+resource_name = "Activate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.03333333, 0, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, 0), Vector3(0, 3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5uqhi"]
+resource_name = "Deactivate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3, 0), Vector3(0, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b3dy1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxm5d"]
+_data = {
+&"Activate": SubResource("Animation_12c36"),
+&"Deactivate": SubResource("Animation_5uqhi"),
+&"RESET": SubResource("Animation_b3dy1")
+}
 
 [node name="TestLevel" type="Node3D" unique_id=1307386189]
 
@@ -74,11 +133,13 @@ script = ExtResource("4_go42g")
 _controller = NodePath("../PlayerCharacter/P_Camera_Controller")
 metadata/_custom_type_script = "uid://bu7ir07jpt16x"
 
-[node name="InteractableTemplate" type="Area3D" parent="." unique_id=1492555717]
+[node name="InteractableTemplate" type="Area3D" parent="." unique_id=1492555717 node_paths=PackedStringArray("activate")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("5_sreuk")
+activate = NodePath("../_Door_")
+is_toggle = true
 metadata/_custom_type_script = "uid://dtiskfbabluwt"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableTemplate" unique_id=1820964647]
@@ -86,3 +147,21 @@ shape = SubResource("SphereShape3D_sreuk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="InteractableTemplate" unique_id=1314419472]
 mesh = SubResource("SphereMesh_tq6uv")
+
+[node name="_Door_" type="Node3D" parent="." unique_id=1395303133 node_paths=PackedStringArray("animator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+script = ExtResource("6_tq6uv")
+animator = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://50vmjfua4dx2"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="_Door_" unique_id=1148020362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_sreuk")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="_Door_/MeshInstance3D" unique_id=763962756]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="_Door_/MeshInstance3D/AnimatableBody3D" unique_id=1268688674]
+shape = SubResource("BoxShape3D_tq6uv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="_Door_" unique_id=51154590]
+libraries/ = SubResource("AnimationLibrary_rxm5d")

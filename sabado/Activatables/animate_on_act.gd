@@ -1,4 +1,5 @@
 extends Activatable
+class_name AnimateActivatable
 
 @export
 var animator : AnimationPlayer
