@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c7tci2nakt7b7"
-path="res://.godot/imported/TestLevel.blend-15d649636589684597dabe22ea621800.scn"
+uid="uid://dfsce2f60dukq"
+path="res://.godot/imported/jodisabado harpia.blend-f1fef92176989e3faab3aeb1f460323f.scn"
 
 [deps]
 
-source_file="res://TestLevel.blend"
-dest_files=["res://.godot/imported/TestLevel.blend-15d649636589684597dabe22ea621800.scn"]
+source_file="res://LevelElements/Enemies/Harpia/jodisabado harpia.blend"
+dest_files=["res://.godot/imported/jodisabado harpia.blend-f1fef92176989e3faab3aeb1f460323f.scn"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dugv66bw8bp3v"]
 
-[ext_resource type="Texture2D" uid="uid://c0vschnsfoc2g" path="res://textures/Temp Title.png" id="1_87wbn"]
+[ext_resource type="Texture2D" uid="uid://c0vschnsfoc2g" path="res://Textures/Temp Title.png" id="1_87wbn"]
 [ext_resource type="Shader" uid="uid://cellcy53datbs" path="res://UI/Shaders/MenuBGShader.gdshader" id="2_sjuxb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_swd6r"]

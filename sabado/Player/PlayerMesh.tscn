@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bep42vfydxyvk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rrr25"]
+
+[node name="PlayerMesh" type="Node3D" unique_id=1968574078]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1600036922]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_rrr25")

@@ -1,0 +1,36 @@
+[gd_resource type="MeshLibrary" format=3 uid="uid://bwcl4bq01hi1o"]
+
+[ext_resource type="ArrayMesh" uid="uid://dvkxg0xsl7i3c" path="res://GridMaps/MapGrid/Meshes/ProtoGridMeshes_Floor.res" id="1_wqo65"]
+[ext_resource type="ArrayMesh" uid="uid://b7tf2kjwr4vf4" path="res://GridMaps/MapGrid/Meshes/ProtoGridMeshes_Wall.res" id="2_rs7h5"]
+[ext_resource type="ArrayMesh" uid="uid://w3ss0kniiaxe" path="res://GridMaps/MapGrid/Meshes/ProtoGridMeshes_Stairs.res" id="3_uama8"]
+[ext_resource type="ArrayMesh" uid="uid://csqd1ucegsi0f" path="res://GridMaps/MapGrid/Meshes/ProtoGridMeshes_Cliff.res" id="4_6r5iq"]
+
+[resource]
+item/0/name = "Ground"
+item/0/mesh = ExtResource("1_wqo65")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "Wall"
+item/1/mesh = ExtResource("2_rs7h5")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+item/2/name = "Stairs"
+item/2/mesh = ExtResource("3_uama8")
+item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/mesh_cast_shadow = 1
+item/2/shapes = []
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
+item/3/name = "Cliff"
+item/3/mesh = ExtResource("4_6r5iq")
+item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/mesh_cast_shadow = 1
+item/3/shapes = []
+item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/navigation_layers = 1

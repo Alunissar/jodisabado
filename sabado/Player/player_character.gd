@@ -1,73 +1,24 @@
-extends CharacterBody3D
+extends Node3D
 class_name PlayerCharacter
 
-@onready var camera: Camera3D = $"../Camera"
-@onready var mesh: CollisionShape3D = $CollisionShape3D
-@onready var ray_cast: RayCast3D = $Interaction_RayCast3D
+# Const references
+const PLAYER_MESH = preload("uid://bep42vfydxyvk")
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const ROT_SPEED = 15
+# Component references
+var mesh : Node3D
 
-var input_dir : Vector3
+# State variables
+var grid_pos: Vector3i
 
-func _input(event: InputEvent) -> void:
-	
-	# direction input updating
-	var input = Input.get_vector("in_left", "in_right", "in_up", "in_down")
-	
-	input_dir = camera.basis * Vector3(input.x, 0, input.y)
-	input_dir.y = 0
-	input_dir = input_dir.normalized()
-	
-	# interaction key handling
-	if Input.is_action_just_pressed("in_act"):
-		ray_cast.target_position = -mesh.global_basis.z
-		if ray_cast.is_colliding():
-			var col = ray_cast.get_collider()
-			if col is Interactable:
-				col.interact()
-			
-		pass
+func _enter_tree() -> void:
+	mesh = PLAYER_MESH.instantiate()
+	add_child(mesh)
 	pass
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity()*2 * delta
-	
-	var move_vec = input_dir * SPEED
-	
-	if get_floor_angle(Vector3.UP) > 0.4:
-		floor_stop_on_slope = false
-		move_vec += get_floor_normal() * SPEED
-	else:
-		floor_stop_on_slope = true
-		pass
-	
-	if move_vec:
-		velocity.x = move_vec.x 
-		velocity.z = move_vec.z
-		
-		# Rotate
-		if(not Input.is_action_pressed("in_target")):
-			var target_angle = Vector3.BACK.signed_angle_to(move_vec, Vector3.UP)
-			var current_angle = Vector3.BACK.signed_angle_to(-mesh.global_basis.z, Vector3.UP)
-			
-			target_angle = lerp_angle(current_angle, target_angle, 1)
-		
-			if(abs(target_angle - current_angle) > ROT_SPEED * delta):
-				mesh.global_rotation.y += sign(target_angle - current_angle) * ROT_SPEED * delta
-			else:
-				mesh.global_rotation.y += target_angle - current_angle
-				pass
-		
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-		pass
-	
-	
-	
-	move_and_slide()
-	
+func move_to(pos: Vector3i) -> void:
+	var tile_contents = GameManager.current_level.get_tile_contents(pos)
+	print("move to ", pos, " || tile type = [", tile_contents["type"], "]")
+	match tile_contents["type"]:
+		"ground":
+			grid_pos = pos
+			global_position = GameManager.current_level.grid_map.map_to_local(grid_pos)
