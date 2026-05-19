@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dugv66bw8bp3v"]
+
+[ext_resource type="Texture2D" uid="uid://c0vschnsfoc2g" path="res://textures/Temp Title.png" id="1_87wbn"]
+[ext_resource type="Shader" uid="uid://cellcy53datbs" path="res://UI/Shaders/MenuBGShader.gdshader" id="2_sjuxb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_swd6r"]
+font_size = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5na2"]
+shader = ExtResource("2_sjuxb")
+shader_parameter/baseCol = Vector4(0.1, 0.15, 0.3, 1)
+shader_parameter/lineCol = Vector4(0.1, 0.2, 0.5, 1)
+shader_parameter/warp = 0.2
+
+[node name="MainMenu" type="Control" unique_id=1150421655]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleScreen" type="Control" parent="." unique_id=1883858238]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreen" unique_id=476850754]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.32000002
+anchor_top = 0.11100001
+anchor_right = 0.68
+anchor_bottom = 0.407
+offset_left = 0.35998535
+offset_top = 0.07199097
+offset_right = 113.9599
+offset_bottom = 52.231995
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_87wbn")
+
+[node name="Label" type="Label" parent="TitleScreen" unique_id=1481186397]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.374
+anchor_top = 0.688
+anchor_right = 0.62600005
+anchor_bottom = 0.758
+offset_left = 0.15197754
+offset_top = 0.17599487
+offset_right = -0.15203857
+offset_bottom = -0.184021
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press Start"
+label_settings = SubResource("LabelSettings_swd6r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainScreen" type="Control" parent="." unique_id=714714329]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MainScreen" unique_id=532362909]
+material = SubResource("ShaderMaterial_c5na2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

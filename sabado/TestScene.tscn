@@ -24,6 +24,10 @@ radius = 0.75
 radial_segments = 12
 rings = 6
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tq6uv"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_12c36"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_sreuk"]
 size = Vector3(1, 2, 3)
 
@@ -147,6 +151,21 @@ shape = SubResource("SphereShape3D_sreuk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="InteractableTemplate" unique_id=1314419472]
 mesh = SubResource("SphereMesh_tq6uv")
+
+[node name="InteractableTemplate2" type="Area3D" parent="." unique_id=280617690 node_paths=PackedStringArray("activate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 9)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("5_sreuk")
+activate = NodePath("../_Door_")
+is_toggle = true
+metadata/_custom_type_script = "uid://dtiskfbabluwt"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableTemplate2" unique_id=555716622]
+shape = SubResource("CapsuleShape3D_tq6uv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InteractableTemplate2" unique_id=1990638203]
+mesh = SubResource("CapsuleMesh_12c36")
 
 [node name="_Door_" type="Node3D" parent="." unique_id=1395303133 node_paths=PackedStringArray("animator")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)

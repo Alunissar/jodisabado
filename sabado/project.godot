@@ -14,10 +14,13 @@ config/name="Sabado"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UIManager="*uid://dcspkq8qi4q8w"
+
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 
 [input]
 
@@ -455,4 +458,16 @@ in_rot_right={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+
+[shader_globals]
+
+Perlin1={
+"type": "sampler2D",
+"value": "res://textures/noiseTexture.png"
+}
+Perlin2={
+"type": "sampler2D",
+"value": "res://textures/noiseTexture(1).png"
+}
