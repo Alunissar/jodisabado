@@ -7,10 +7,9 @@ var grid_map_editor: GridMapEditorPlugin
 
 func _enable_plugin() -> void:
 	set_process(true)
-	print("aaa")
+
 
 func _handles(object: Object) -> bool:
-	print("test")
 	if object is GridMap:
 		var root = get_editor_interface().get_resource_filesystem().get_node("/root")
 		grid_map_editor = root.find_children("", "GridMapEditorPlugin", true, false)[0]

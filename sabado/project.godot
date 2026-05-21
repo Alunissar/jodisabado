@@ -20,6 +20,8 @@ UIManager="*uid://dcspkq8qi4q8w"
 PCInstance="*uid://w4q6wv5616hf"
 CameraManager="*uid://b6yu6p5wfuxog"
 GameManager="*uid://n02xvp5p2fxj"
+InputManager="*uid://br1yiuo8hx6ug"
+Global="*uid://dd7ld1go1pamm"
 
 [display]
 

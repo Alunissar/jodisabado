@@ -18,11 +18,23 @@ func get_tile_contents(pos: Vector3i):
 	match grid_map.get_cell_item(pos):
 		1: return { "type"="wall" }
 		
-		2: return {"type" = "stairs",
-				   "direction" = grid_map.get_cell_item_orientation(pos)}
+		2: 
+			var cont = {"type" = "stairs"}
+			match grid_map.get_cell_item_orientation(pos):
+				0:cont["direction"] = "E"
+				16:cont["direction"] = "N"
+				10: cont["direction"] = "W"
+				22:cont["direction"] = "S"
+			return cont
 		
-		3: return {"type" = "cliff",
-				   "direction" = grid_map.get_cell_item_orientation(pos)}
+		3: 
+			var cont = {"type" = "cliff"}
+			match grid_map.get_cell_item_orientation(pos):
+				0:cont["direction"] = "E"
+				16:cont["direction"] = "N"
+				10: cont["direction"] = "W"
+				22:cont["direction"] = "S"
+			return cont
 		
 		0: 
 			if item_map.get_cell_item(pos) == -1: return {"type" = "ground"}
@@ -30,8 +42,7 @@ func get_tile_contents(pos: Vector3i):
 						  "ID" = item_map.get_cell_item(pos)}
 		
 		-1: 
-			printerr("PLAYER TRIED MOVING OUT OF BOUNDS")
-			return { "type"="wall" }
+			return { "type"="air" }
 	
-	printerr("FAILED READING TILE CONTENTS")
+	push_error("FAILED READING TILE CONTENTS")
 	return false
