@@ -1,6 +1,7 @@
 extends Node
 
 const STARTING_LEVEL = preload("uid://bf344f5hvf1ll")
+const GAME_SCENE = preload("uid://b6jjrybyvvgqm")
 
 enum GameStates {
 	MENU,
@@ -11,14 +12,21 @@ var _state: GameStates
 func get_state() -> GameStates:
 	return _state
 
+var worldVP: Viewport
+
 var _current_level: Level
 
+var ui_manager: GUIManager
+
 func _ready() -> void:
-	call_deferred("load_level",STARTING_LEVEL, 0)
-	_state = GameStates.INGAME
+	var game = GAME_SCENE.instantiate()
+	add_child(game)
+	worldVP = game.find_child("WorldVP") as Viewport
 	
-	var strin = "NSEWUP"
-	print(strin, " || ", Global.invert_dir(strin))
+	_state = GameStates.INGAME
+	await get_tree().create_timer(0.5).timeout
+	call("load_level",STARTING_LEVEL, 0)
+	
 
 
 func load_level(level: PackedScene, entranceID) -> void:
@@ -27,7 +35,7 @@ func load_level(level: PackedScene, entranceID) -> void:
 		_current_level.queue_free()
 	
 	var loaded = level.instantiate()
-	get_tree().root.add_child(loaded)
+	worldVP.add_child(loaded)
 	_current_level = loaded as Level
 	_current_level.enter_level(entranceID)
 

@@ -1,3 +1,4 @@
 [gd_resource type="SystemFont" format=3 uid="uid://cqmrhx0ybf4ux"]
 
 [resource]
+subpixel_positioning = 0

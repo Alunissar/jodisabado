@@ -9,10 +9,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -6)
 script = ExtResource("1_xhd5h")
 metadata/_custom_type_script = "uid://bfrunnd5vhkan"
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2072784810]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 7, 6)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=640774422]
 transform = Transform3D(1, 0, 0, 0, 0.48863646, 0.8724875, 0, -0.8724875, 0.48863646, 0, 0, 0)
 light_energy = 0.467
 sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2072784810]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 7, 6)
+current = true

@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://b6jjrybyvvgqm"]
+
+[ext_resource type="Texture2D" uid="uid://bs6juw34hwtyx" path="res://UI/PHolderGUIBG.png" id="1_7128w"]
+[ext_resource type="Script" uid="uid://dcspkq8qi4q8w" path="res://UI/gui_manager.gd" id="1_pviga"]
+[ext_resource type="Texture2D" uid="uid://ckq7rfp41hru5" path="res://icon.svg" id="2_71065"]
+[ext_resource type="Script" uid="uid://usgb1u2q2d2x" path="res://UI/label_plus.gd" id="3_71065"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_71065"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pviga"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m2jj5"]
+
+[node name="GameScene" type="Control" unique_id=458075170]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Border" type="TextureRect" parent="." unique_id=1802424355]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.75000006
+anchor_bottom = 0.66700006
+offset_right = -3.0517578e-05
+offset_bottom = 31.879974
+
+[node name="WorldVPContainer" type="SubViewportContainer" parent="Border" unique_id=878836272]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 485.0
+offset_bottom = 245.0
+
+[node name="WorldVP" type="SubViewport" parent="Border/WorldVPContainer" unique_id=529694981]
+handle_input_locally = false
+size = Vector2i(480, 240)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Border/WorldVPContainer/WorldVP" unique_id=1854848754]
+transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 6, 21, 5)
+current = true
+
+[node name="HUD" type="Control" parent="." unique_id=1742312367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pviga")
+
+[node name="Background" type="TextureRect" parent="HUD" unique_id=983519084]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7128w")
+expand_mode = 1
+
+[node name="SideBar" type="Control" parent="HUD" unique_id=1693643670]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 491.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="BottomBar" type="Control" parent="HUD" unique_id=854389824]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 250.0
+offset_right = -152.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerStatScreen" type="Control" parent="HUD/BottomBar" unique_id=1783977617]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -276.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HPIcon" type="TextureRect" parent="HUD/BottomBar/PlayerStatScreen" unique_id=2043108166]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 15.0
+offset_right = -181.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_71065")
+expand_mode = 1
+
+[node name="ATKIcon" type="TextureRect" parent="HUD/BottomBar/PlayerStatScreen" unique_id=306819404]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 47.0
+offset_right = -181.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_71065")
+expand_mode = 1
+
+[node name="DEFIcon" type="TextureRect" parent="HUD/BottomBar/PlayerStatScreen" unique_id=719622729]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 79.0
+offset_right = -181.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_71065")
+expand_mode = 1
+
+[node name="HPLabel" type="Label" parent="HUD/BottomBar/PlayerStatScreen" unique_id=963507460]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 16.0
+offset_right = 206.0
+offset_bottom = 39.0
+text = "999.999.999.999"
+label_settings = SubResource("LabelSettings_71065")
+vertical_alignment = 1
+script = ExtResource("3_71065")
+
+[node name="ATKLabel" type="Label" parent="HUD/BottomBar/PlayerStatScreen" unique_id=741155100]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 48.0
+offset_right = 206.0
+offset_bottom = 71.0
+text = "999.999.999.999"
+label_settings = SubResource("LabelSettings_pviga")
+vertical_alignment = 1
+script = ExtResource("3_71065")
+
+[node name="DEFLabel" type="Label" parent="HUD/BottomBar/PlayerStatScreen" unique_id=603191105]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 80.0
+offset_right = 206.0
+offset_bottom = 103.0
+text = "999.999.999.999"
+label_settings = SubResource("LabelSettings_m2jj5")
+vertical_alignment = 1
+script = ExtResource("3_71065")
+
+[node name="PauseButton" type="TextureButton" parent="HUD" unique_id=1366047124]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 24.0
+offset_bottom = 24.0
+texture_normal = ExtResource("2_71065")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="item_rect_changed" from="." to="HUD/BottomBar/PlayerStatScreen/HPLabel" method="_on_game_scene_item_rect_changed"]

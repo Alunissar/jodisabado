@@ -7,6 +7,8 @@ const PLAYER_MESH = preload("uid://bep42vfydxyvk")
 # Component references
 var mesh : Node3D
 
+var HP : int
+
 # State variables
 var grid_pos: Vector3i
 var facing_dir: String
@@ -16,9 +18,9 @@ func _enter_tree() -> void:
 	add_child(mesh)
 	pass
 
-
 func _ready() -> void:
-		facing_dir = "N"
+	HP = 100
+	facing_dir = "N"
 
 func move(dir):
 	match dir:
