@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c1le0x46lcctj"]
+
+[ext_resource type="PackedScene" uid="uid://dfsce2f60dukq" path="res://LevelElements/Enemies/Harpia/jodisabado harpia.blend" id="1_ctqi8"]
+[ext_resource type="Script" uid="uid://bjnjd0xtfkibp" path="res://LevelElements/enemy.gd" id="1_qlsbe"]
+
+[node name="EnemyHarpy" type="Node3D" unique_id=2117551441]
+script = ExtResource("1_qlsbe")
+base_HP = 10
+base_ATK = 5
+base_DEF = 3
+base_EXP = 1
+metadata/_custom_type_script = "uid://fhya2mxorka6"
+
+[node name="jodisabado harpia" parent="." unique_id=926229514 instance=ExtResource("1_ctqi8")]

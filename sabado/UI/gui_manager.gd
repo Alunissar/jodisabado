@@ -6,10 +6,9 @@ class_name GUIManager
 @onready var def_label: LabelPlus = $BottomBar/PlayerStatScreen/DEFLabel
 
 func _ready() -> void:
-	update_stats()
+	GameManager.ui_manager = self
 
 func update_stats() -> void:
-	
-	hp_label.text = Global.insert_group_splitters(str(PCInstance.HP))
-	
-	
+	hp_label.text_set(Global.insert_group_splitters(str(PCInstance.HP)))
+	atk_label.text_set(Global.insert_group_splitters(str(PCInstance.ATK)))
+	def_label.text_set(Global.insert_group_splitters(str(PCInstance.DEF)))

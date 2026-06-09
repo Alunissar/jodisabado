@@ -7,7 +7,12 @@ const PLAYER_MESH = preload("uid://bep42vfydxyvk")
 # Component references
 var mesh : Node3D
 
-var HP : int
+var HP:int
+var ATK:int
+var DEF:int
+
+var EXP:int
+var LVL:int
 
 # State variables
 var grid_pos: Vector3i
@@ -17,10 +22,6 @@ func _enter_tree() -> void:
 	mesh = PLAYER_MESH.instantiate()
 	add_child(mesh)
 	pass
-
-func _ready() -> void:
-	HP = 100
-	facing_dir = "N"
 
 func move(dir):
 	match dir:
@@ -72,5 +73,20 @@ func move_to(pos: Vector3i) -> void:
 			global_position = GameManager.grid_to_world(pos) + Vector3.DOWN
 			move("D")
 		
+		"item":
+			GameManager.interact_with(pos)
+			pass
+		
 	if(tile_contents.has("direction")):
 		print("tile direction = [", tile_contents["direction"], "]")
+
+func gain_exp(amount:int) -> void:
+	EXP += amount
+
+func take_damage(amount:int) -> void:
+	HP -= amount
+	if(HP<=0): die()
+
+func die() -> void:
+	print("HA. ded.")
+	pass

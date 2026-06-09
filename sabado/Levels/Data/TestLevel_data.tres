@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cx1gq7yrm5hjl"]
+
+[ext_resource type="Script" uid="uid://dgcp6p81xwcoy" path="res://Data/level_data.gd" id="1_b0unc"]
+
+[resource]
+script = ExtResource("1_b0unc")
+itemList = Dictionary[Vector3i, Variant]({
+Vector3i(-3, 1, -1): 0,
+Vector3i(0, 0, -1): 0,
+Vector3i(0, 0, 1): 0,
+Vector3i(2, 0, -1): 0,
+Vector3i(2, 0, 1): 0,
+Vector3i(7, 0, -1): 0,
+Vector3i(7, 0, 3): 0,
+Vector3i(9, 0, 1): 0
+})

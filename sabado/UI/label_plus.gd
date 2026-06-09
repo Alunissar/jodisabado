@@ -9,8 +9,6 @@ func _ready() -> void:
 	original_text_size = label_settings.font_size
 	
 	item_rect_changed.connect(_reevaluate_size)
-	
-	text_set("999999999999999999999999")
 	pass
 
 func text_set(value: String) -> void:

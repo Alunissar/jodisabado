@@ -40,8 +40,10 @@ size = Vector2i(480, 240)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Border/WorldVPContainer/WorldVP" unique_id=1854848754]
-transform = Transform3D(1, 0, 0, 0, 0.25881904, 0.9659259, 0, -0.9659259, 0.25881904, 6, 21, 5)
+transform = Transform3D(1, -1.23445325e-08, 7.194917e-08, -5.6137544e-08, 0.49999994, 0.86602545, -4.6665257e-08, -0.86602545, 0.4999999, 0, 19.585787, 11)
 current = true
+fov = 30.0
+size = 20.0
 
 [node name="HUD" type="Control" parent="." unique_id=1742312367]
 layout_mode = 1
