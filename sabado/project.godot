@@ -21,6 +21,7 @@ CameraManager="*uid://b6yu6p5wfuxog"
 GameManager="*uid://n02xvp5p2fxj"
 InputManager="*uid://br1yiuo8hx6ug"
 Global="*uid://dd7ld1go1pamm"
+CommandStack="*uid://cp358x3q3ndxq"
 
 [display]
 

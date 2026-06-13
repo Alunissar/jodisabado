@@ -68,18 +68,30 @@ func interact_with(pos:Vector3i):
 	_current_level.item_refs[pos].on_interact()
 	pass
 
+func calc_combat_results(enemy:Enemy) -> Variant:
+	if PCInstance.ATK < enemy.get_def(): return null
+	var turn_count:int = ceil(enemy.get_hp() / (PCInstance.ATK-enemy.get_def()))
+	var damage_taken:int = (enemy.get_atk()-PCInstance.DEF)*turn_count
+	var TRT:int = ceil(float(enemy.get_hp())/(turn_count-1)-PCInstance.ATK+enemy.get_def())
+	print (damage_taken, " damage taken in ", turn_count-1, " turns. TRT: ", TRT)
+	return {turns = turn_count, damage = damage_taken, TRT = TRT}
+
 func start_combat(enemy:Enemy) -> bool:
-	var hp = enemy.base_HP
+	var calc = calc_combat_results(enemy)
 	
-	var maxturns = 500
+	print(calc)
 	
-	while maxturns > 0:
-		hp -= (PCInstance.ATK-enemy.base_DEF)
-		if hp<=0: 
+	var hp = enemy.get_hp()
+	
+	while PCInstance.ATK > enemy.get_def():
+		
+		hp -= (PCInstance.ATK-enemy.get_def())
+		if hp<=0:
 			ui_manager.update_stats()
 			return true;
-		PCInstance.take_damage(enemy.base_ATK - PCInstance.DEF)
-		if PCInstance.HP <= 0: 
+			
+		PCInstance.gain_health(-min(enemy.get_atk() - PCInstance.DEF,0))
+		if PCInstance.HP <= 0:
 			ui_manager.update_stats()
 			return false;
 	

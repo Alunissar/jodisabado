@@ -83,9 +83,15 @@ func move_to(pos: Vector3i) -> void:
 func gain_exp(amount:int) -> void:
 	EXP += amount
 
-func take_damage(amount:int) -> void:
-	HP -= amount
+func gain_health(amount:int) -> void:
+	HP += amount
 	if(HP<=0): die()
+
+func gain_atk(amount:int) -> void:
+	ATK += amount
+
+func gain_def(amount:int) -> void:
+	DEF += amount
 
 func die() -> void:
 	print("HA. ded.")
