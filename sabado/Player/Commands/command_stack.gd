@@ -1,14 +1,35 @@
 extends Node
 
+var redo_stack:Node
+
+func _init() -> void:
+	redo_stack = Node.new()
+	redo_stack.name = "RedoStack"
+	add_child(redo_stack)
+
 func make_command(actions:Array[Action]):
+	if(redo_stack.get_child_count()>0):
+		for child in redo_stack.get_children():
+			child.queue_free()
 	
 	var command = Command.new(PCInstance.position, actions)
 	add_child(command)
 	command.execute()
-	
 
 func undo():
-	var command = get_child(0) as Command
+	if(get_child_count() <2): return
+	
+	var command = get_child(-1) as Command
 	
 	command.undo()
-	command.queue_free()
+	remove_child(command)
+	redo_stack.add_child(command)
+
+func redo():
+	if(redo_stack.get_child_count() <1): return
+	
+	var command = redo_stack.get_child(-1) as Command
+	
+	command.execute()
+	redo_stack.remove_child(command)
+	add_child(command)

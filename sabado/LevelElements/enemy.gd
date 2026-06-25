@@ -19,9 +19,5 @@ func get_exp()->int:
 	return base_EXP
 
 func on_interact() -> void:
-	if GameManager.start_combat(self):
-		PCInstance.gain_exp(base_EXP)
-		collected.emit(self)
-		queue_free()
-	
+	CommandStack.make_command([Combat.new(self),AddStat.new(0,0,1,0)])
 	pass

@@ -20,4 +20,11 @@ func _in_game_input(event: InputEvent) -> void:
 		PCInstance.move("E")
 		pass
 	
+	if event.is_action_pressed("in_undo"):
+		CommandStack.undo()
+	
+	if event.is_action_pressed("in_redo"):
+		CommandStack.redo()
+	
+	
 	pass

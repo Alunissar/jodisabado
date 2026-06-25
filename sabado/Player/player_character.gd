@@ -80,18 +80,26 @@ func move_to(pos: Vector3i) -> void:
 	if(tile_contents.has("direction")):
 		print("tile direction = [", tile_contents["direction"], "]")
 
+signal gained_exp(amount:int)
 func gain_exp(amount:int) -> void:
 	EXP += amount
+	gained_exp.emit(amount)
 
+signal gained_health(amount:int)
 func gain_health(amount:int) -> void:
 	HP += amount
+	gained_health.emit(amount)
 	if(HP<=0): die()
 
+signal gained_atk(amount:int)
 func gain_atk(amount:int) -> void:
 	ATK += amount
+	gained_atk.emit(amount)
 
+signal gained_def(amount:int)
 func gain_def(amount:int) -> void:
 	DEF += amount
+	gained_def.emit(amount)
 
 func die() -> void:
 	print("HA. ded.")
