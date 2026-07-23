@@ -1,11 +1,12 @@
 extends Node
 class_name Command
 
-var pc_pos:Vector3i
+var pc_pos1:Vector3i
+var pc_pos2:Vector3i
 var actions:Array[Action]
 
 func _init(pos:Vector3i, actions:Array[Action]) -> void:
-	pc_pos = pos
+	pc_pos1 = pos
 	self.actions = actions
 	for action in actions:
 		add_child(action)
@@ -13,6 +14,8 @@ func _init(pos:Vector3i, actions:Array[Action]) -> void:
 func execute():
 	for action in actions:
 		action.forward()
+	
+	pc_pos2 = PCInstance.grid_pos
 	pass
 
 func undo():

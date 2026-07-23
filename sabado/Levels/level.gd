@@ -80,6 +80,9 @@ func forget_item(item:LevelElement) -> void:
 	var pos = item_refs.find_key(item)
 	item_refs.erase(pos)
 
+func remember_item(pos:Vector3i) -> void:
+	pass
+
 @export_tool_button("Bake Level Data")
 var button = _bake_level_data
 

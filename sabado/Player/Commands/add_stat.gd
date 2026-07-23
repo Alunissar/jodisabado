@@ -13,14 +13,14 @@ func _init(exp:int, hp:int, atk:int, def:int) -> void:
 	_def = def
 	pass
 
-func forward():
+func forward() -> void:
 	PCInstance.gain_exp(_exp)
 	PCInstance.gain_health(_hp)
 	PCInstance.gain_atk(_atk)
 	PCInstance.gain_def(_def)
 	pass
 
-func reverse():
+func reverse() -> void:
 	PCInstance.gain_exp(-_exp)
 	PCInstance.gain_health(-_hp)
 	PCInstance.gain_atk(-_atk)

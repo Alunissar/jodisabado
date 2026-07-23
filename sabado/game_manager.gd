@@ -15,7 +15,7 @@ func get_state() -> GameStates:
 var worldVP: Viewport
 var ui_manager: GUIManager
 
-var _current_level: Level
+var current_level: Level
 
 var tower_data: TowerData
 
@@ -47,25 +47,25 @@ func start_game() -> void:
 	pass
 
 func load_level(level: PackedScene, entranceID) -> void:
-	if _current_level != null:
-		_current_level.queue_free()
+	if current_level != null:
+		current_level.queue_free()
 	
 	var loaded = level.instantiate()
-	_current_level = loaded as Level
+	current_level = loaded as Level
 	
 	worldVP.add_child(loaded)
-	tower_data.visit_level(_current_level)
-	_current_level.load_items()
-	_current_level.enter_level(entranceID)
+	tower_data.visit_level(current_level)
+	current_level.load_items()
+	current_level.enter_level(entranceID)
 	
 	pass
 
 func grid_to_world(pos:Vector3i) -> Vector3:
-	return _current_level.grid_map.map_to_local(pos)
+	return current_level.grid_map.map_to_local(pos)
 
 func get_tile_contents(pos:Vector3i):
-	return _current_level.get_tile_contents(pos)
+	return current_level.get_tile_contents(pos)
 
 func interact_with(pos:Vector3i):
-	_current_level.item_refs[pos].on_interact()
+	current_level.item_refs[pos].on_interact()
 	pass
