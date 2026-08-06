@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ceohee6huy0ng"]
+
+[ext_resource type="Shader" uid="uid://c6auox8kma6pv" path="res://Rendering/Shaders/simple_unlit.gdshader" id="1_6ofkq"]
+[ext_resource type="Texture2D" uid="uid://d3mgkd470bgld" path="res://LevelElements/Enemies/Harpia/HarpyBaseColor.png" id="2_uppy6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6ofkq")
+shader_parameter/mainCol = Color(1, 1, 1, 1)
+shader_parameter/mainTex = ExtResource("2_uppy6")

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dmrfrio4t5vw2"]
+
+[ext_resource type="Shader" uid="uid://c6auox8kma6pv" path="res://Rendering/Shaders/simple_unlit.gdshader" id="1_pyuap"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_pyuap")
+shader_parameter/mainCol = Color(0.18039216, 0.73333335, 0.33333334, 1)
+shader_parameter/zOffset = -2.0012499500010605e-05

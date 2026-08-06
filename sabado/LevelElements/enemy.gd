@@ -18,6 +18,6 @@ func get_def()->int:
 func get_exp()->int:
 	return base_EXP
 
-func on_interact() -> void:
-	CommandStack.make_command([Combat.new(self),AddStat.new(0,0,1,0)])
+func on_interact(pos:Vector3i) -> void:
+	CommandStack.make_command([Combat.new(pos),AddStat.new(0,0,1,0)])
 	pass

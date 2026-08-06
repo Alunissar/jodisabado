@@ -18,34 +18,33 @@ static func calc_combat_results(enemy:Enemy) -> Variant:
 	var dmg_stp:int = damage_step_value(enemy)
 	
 	var turn_count:int = (enemy.get_hp()+atk_stp-1) / atk_stp
-	var damage_taken:int = (dmg_stp)*turn_count
+	var damage_taken:int = (dmg_stp)*(turn_count-1)
 	var TRT:int = (enemy.get_hp()+turn_count-2)/(turn_count-1)-PCInstance.ATK+enemy.get_def()
 	
 	print (damage_taken, " damage taken in ", turn_count-1, " turns. TRT: ", TRT)
 	return {turns = turn_count, damage = damage_taken, TRT = TRT}
 
 func _init(pos:Vector3i) -> void:
-	_enemy = GameManager.current_level.item_refs[pos] as Enemy
-	_enemy_id = GameManager.current_level.data.itemList[pos]
-	
+	_enemy = GameManager.current_level.data.itemElements[pos] as Enemy
+	_enemy_id = GameManager.current_level.data.activeItems[pos]
+	_enemy_pos = pos
 
 func forward() -> bool:
 	calc = calc_combat_results(_enemy)
-	
 	print(calc)
 	
 	var hp = _enemy.get_hp()
 	
 	while PCInstance.ATK > _enemy.get_def():
-		
 		hp -= (PCInstance.ATK-_enemy.get_def())
 		if hp<=0:
 			PCInstance.gain_exp(_enemy.base_EXP)
 			_enemy.collected.emit(_enemy)
-			ObjectPool.return_object(_enemy, LevelElement.id_to_path(_enemy.element_id))
+			GameManager.current_level.remove_item_at(_enemy_pos)
+			PCInstance.move_to(_enemy_pos)
 			return true;
-			
-		PCInstance.gain_health(-max(_enemy.get_atk() - PCInstance.DEF,0))
+		
+		PCInstance.gain_health(-max(_enemy.get_atk() - PCInstance.DEF, 0))
 		if PCInstance.HP <= 0:
 			return true;
 	
@@ -55,7 +54,5 @@ func reverse() -> bool:
 	PCInstance.gain_health(calc["damage"])
 	calc = []
 	
-	var enmy = ObjectPool.get_object(LevelElement.id_to_path(_enemy_id))
-	GameManager.current_level.add_child(enmy)
-	
+	GameManager.current_level.add_item_at(_enemy_pos, _enemy_id)
 	return true

@@ -4,7 +4,7 @@ class_name LevelElement
 signal collected
 var id
 
-func on_interact() -> void:
+func on_interact(pos:Vector3i) -> void:
 	collected.emit(self)
 	queue_free()
 

@@ -7,8 +7,7 @@ class_name Level
 @export var entrances: Dictionary[String, Vector3i]
 
 var data: LevelData
-var item_refs: Dictionary[Vector3i, LevelElement]
-var entered_from:String
+var entered_from: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,7 +22,14 @@ func enter_level(entranceID) -> void:
 		entered_from = entranceID
 		PCInstance.move_to(entrances[entranceID])
 	
+	data.remember_all()
 	pass
+
+func exit_level() -> void:
+	if Engine.is_editor_hint(): return;
+	
+	data.forget_all()
+	queue_free()
 
 func get_tile_contents(pos: Vector3i):
 	if Engine.is_editor_hint(): return;
@@ -50,7 +56,7 @@ func get_tile_contents(pos: Vector3i):
 			return cont
 		
 		0: 
-			if item_refs.has(pos): return {"type" = "item"}
+			if data.activeItems.has(pos): return {"type" = "item"}
 			else: return {"type" = "ground"}
 		
 		-1: 
@@ -65,23 +71,16 @@ func load_items() -> void:
 	if item_map != null:
 		item_map.queue_free()
 	
-	for item in data.itemList:
-		var item_obj = LevelElement.id_to_packed_scene(data.itemList[item]).instantiate() as LevelElement
-		item_obj.position = grid_map.to_global(grid_map.map_to_local(item))
-		item_refs[item] = item_obj
-		item_obj.collected.connect(forget_item)
-		
-		add_child(item_obj)
-		pass
-	
+	data.reset_all()
+	data.remember_all()
 	pass
 
-func forget_item(item:LevelElement) -> void:
-	var pos = item_refs.find_key(item)
-	item_refs.erase(pos)
+func remove_item_at(pos:Vector3i) -> void:
+	data.remove(pos)
 
-func remember_item(pos:Vector3i) -> void:
-	pass
+func add_item_at(pos:Vector3i, id:int):
+	data.add(pos, id)
+	data.remember(pos)
 
 @export_tool_button("Bake Level Data")
 var button = _bake_level_data
@@ -96,5 +95,4 @@ func _bake_level_data() -> void:
 	else: print("failed write")
 	
 	print(data.itemList)
-	
 	pass

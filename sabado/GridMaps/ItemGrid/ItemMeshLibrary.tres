@@ -2,14 +2,27 @@
 
 [ext_resource type="Shader" uid="uid://c6auox8kma6pv" path="res://Rendering/Shaders/simple_unlit.gdshader" id="1_76cnh"]
 [ext_resource type="Texture2D" uid="uid://d3mgkd470bgld" path="res://LevelElements/Enemies/Harpia/HarpyBaseColor.png" id="1_fb0mh"]
+[ext_resource type="Shader" uid="uid://li6vns4ga7tg" path="res://Rendering/Shaders/transparent_unlit.gdshader" id="3_iu2xi"]
+[ext_resource type="Texture2D" uid="uid://jdkatpmtlb84" path="res://Textures/TestWarp.png" id="4_7jbou"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3866k"]
 render_priority = 0
 shader = ExtResource("1_76cnh")
+shader_parameter/mainCol = Color(1, 1, 1, 1)
 shader_parameter/mainTex = ExtResource("1_fb0mh")
+shader_parameter/zOffset = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_iu2xi"]
 material = SubResource("ShaderMaterial_3866k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqixi"]
+render_priority = 0
+shader = ExtResource("3_iu2xi")
+shader_parameter/mainCol = Color(1, 1, 1, 1)
+shader_parameter/mainTex = ExtResource("4_7jbou")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7jbou"]
+material = SubResource("ShaderMaterial_lqixi")
 
 [resource]
 item/0/name = "Harpy"
@@ -20,3 +33,10 @@ item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
 item/0/preview = ExtResource("1_fb0mh")
+item/1/name = "Warp"
+item/1/mesh = SubResource("PlaneMesh_7jbou")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1

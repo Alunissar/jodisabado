@@ -12,7 +12,7 @@ func make_command(actions:Array[Action]):
 		for child in redo_stack.get_children():
 			child.queue_free()
 	
-	var command = Command.new(PCInstance.position, actions)
+	var command = Command.new(PCInstance.grid_pos, actions)
 	add_child(command)
 	command.execute()
 
@@ -30,6 +30,6 @@ func redo():
 	
 	var command = redo_stack.get_child(-1) as Command
 	
-	command.execute()
+	command.redo()
 	redo_stack.remove_child(command)
 	add_child(command)

@@ -18,14 +18,3 @@ func _update(camera: Camera3D, delta: float):
 	
 	camera.look_at(global_position)
 	pass
-
-func _process(delta: float) -> void:
-	# rot input
-	if(Input.is_action_pressed("in_rot_right")):
-		_rotation = lerp_angle(_rotation, _rotation + orbit_speed * delta, 1)
-		pass
-	if(Input.is_action_pressed("in_rot_left")):
-		_rotation = lerp_angle(_rotation, _rotation - orbit_speed * delta, 1)
-		pass
-	if(Input.is_action_pressed("in_target")):
-		_rotation = lerp_angle(_rotation, PCInstance.mesh.global_rotation.y ,1)

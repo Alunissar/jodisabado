@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dg1m5wjbqr03"]
+
+[ext_resource type="Shader" uid="uid://c6auox8kma6pv" path="res://Rendering/Shaders/simple_unlit.gdshader" id="1_awxwk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_awxwk")
+shader_parameter/mainCol = Color(0.029506557, 0.029506557, 0.029506557, 1)
+shader_parameter/zOffset = 0.0019999874499999626

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dfsce2f60dukq"
-path="res://.godot/imported/jodisabado harpia.blend-f1fef92176989e3faab3aeb1f460323f.scn"
+uid="uid://d0kj6eyeh4484"
+path="res://.godot/imported/Items.blend-7b0ad43760badbadec2763d38c737de0.scn"
 
 [deps]
 
-source_file="res://LevelElements/Enemies/Harpia/jodisabado harpia.blend"
-dest_files=["res://.godot/imported/jodisabado harpia.blend-f1fef92176989e3faab3aeb1f460323f.scn"]
+source_file="res://LevelElements/Items/Items.blend"
+dest_files=["res://.godot/imported/Items.blend-7b0ad43760badbadec2763d38c737de0.scn"]
 
 [params]
 
@@ -39,22 +39,14 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"materials": {
-"Material": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://LevelElements/Enemies/Harpia/HarpiaShader.tres",
-"use_external/path": "uid://ceohee6huy0ng"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
 blender/nodes/cameras=true
 blender/nodes/custom_properties=true
 blender/nodes/modifiers=1
-blender/meshes/vertex_colors=2
+blender/meshes/vertex_colors=1
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/export_geometry_nodes_instances=false
@@ -68,4 +60,4 @@ blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
 gltf/naming_version=2
-gltf/texture_map_mode=0
+gltf/texture_map_mode=1

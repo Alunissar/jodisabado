@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_b0unc")
-itemList = Dictionary[Vector3i, Variant]({
+itemList = Dictionary[Vector3i, int]({
 Vector3i(-3, 1, -1): 0,
 Vector3i(0, 0, -1): 0,
 Vector3i(0, 0, 1): 0,

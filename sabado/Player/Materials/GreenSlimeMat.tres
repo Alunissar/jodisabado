@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bon42ltjgmfqr"]
+
+[ext_resource type="Shader" uid="uid://li6vns4ga7tg" path="res://Rendering/Shaders/transparent_unlit.gdshader" id="1_c02iq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c02iq")
+shader_parameter/mainCol = Color(0.41000003, 1, 0.54766667, 0.14509805)

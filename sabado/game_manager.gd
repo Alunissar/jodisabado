@@ -48,16 +48,18 @@ func start_game() -> void:
 
 func load_level(level: PackedScene, entranceID) -> void:
 	if current_level != null:
-		current_level.queue_free()
+		current_level.exit_level()
 	
-	var loaded = level.instantiate()
-	current_level = loaded as Level
+	current_level = level.instantiate() as Level
 	
-	worldVP.add_child(loaded)
-	tower_data.visit_level(current_level)
-	current_level.load_items()
+	worldVP.add_child(current_level)
+	if(tower_data.visited_levels.has(level.resource_path)):
+		current_level.data = tower_data.visited_levels[level.resource_path]
+	else:
+		tower_data.visit_level(current_level, level.resource_path)
+		current_level.load_items()
+	
 	current_level.enter_level(entranceID)
-	
 	pass
 
 func grid_to_world(pos:Vector3i) -> Vector3:
@@ -67,5 +69,5 @@ func get_tile_contents(pos:Vector3i):
 	return current_level.get_tile_contents(pos)
 
 func interact_with(pos:Vector3i):
-	current_level.item_refs[pos].on_interact()
+	current_level.data.itemElements[pos].on_interact(pos)
 	pass
