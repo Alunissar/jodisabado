@@ -26,5 +26,8 @@ func _in_game_input(event: InputEvent) -> void:
 	if event.is_action_pressed("in_redo"):
 		CommandStack.redo()
 	
-	
+	if event is InputEventMouseMotion:
+		if event.button_mask == MOUSE_BUTTON_MASK_RIGHT:
+			CameraManager.rotate_input(event.screen_relative.x*-50)
+			pass
 	pass

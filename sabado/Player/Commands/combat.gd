@@ -19,7 +19,11 @@ static func calc_combat_results(enemy:Enemy) -> Variant:
 	
 	var turn_count:int = (enemy.get_hp()+atk_stp-1) / atk_stp
 	var damage_taken:int = (dmg_stp)*(turn_count-1)
-	var TRT:int = (enemy.get_hp()+turn_count-2)/(turn_count-1)-PCInstance.ATK+enemy.get_def()
+	var TRT:int
+	if(turn_count == 1):
+		TRT = NAN
+	else:
+		TRT = (enemy.get_hp()+turn_count-2)/(turn_count-1)-PCInstance.ATK+enemy.get_def()
 	
 	print (damage_taken, " damage taken in ", turn_count-1, " turns. TRT: ", TRT)
 	return {turns = turn_count, damage = damage_taken, TRT = TRT}

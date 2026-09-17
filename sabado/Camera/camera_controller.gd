@@ -13,13 +13,10 @@ func _init(dist:float, dir:float) -> void:
 	pass
 
 func update(camera: Camera3D, delta: float, trans_input:Vector2, rot_input:float) -> void:
-	var orb_offset:Vector3 = Vector3(0, dist/2, -dist)
+	var orb_offset:Vector3 = Vector3(0, pow(dist,1.2), -dist)
 	facing_dir = fmod((facing_dir + rot_input*delta),360)
 	
-	var target_pos = (position + # original pos
-			Vector3(trans_input.x*delta*velocity, 0, trans_input.x*delta*velocity) + # translative input offset
-			orb_offset.rotated(Vector3.UP, facing_dir)) # orbiting distance
-	
-	camera.global_position = lerp(camera.global_position, target_pos, easing);
+	global_position = global_position + Vector3(trans_input.x*delta*velocity, 0, trans_input.x*delta*velocity)
+	camera.global_position = lerp(camera.position, global_position + orb_offset.rotated(Vector3.UP, deg_to_rad(facing_dir)), easing)
 	camera.look_at(global_position, Vector3.UP)
 	pass
