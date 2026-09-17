@@ -30,6 +30,8 @@ func _ready() -> void:
 	pass
 
 func start_game() -> void:
+	CameraManager.startup()
+	
 	tower_data = TowerData.new()
 	_state = GameStates.INGAME
 	

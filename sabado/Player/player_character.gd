@@ -27,18 +27,22 @@ func move(dir):
 	match dir:
 		"E":
 			facing_dir = "E"
+			mesh.rotation_degrees.y = 90
 			move_to(grid_pos + Vector3i(1,0,0))
 			pass
 		"N":
 			facing_dir = "N"
+			mesh.rotation_degrees.y = 180
 			move_to(grid_pos + Vector3i(0,0,-1))
 			pass
 		"W":
 			facing_dir = "W"
+			mesh.rotation_degrees.y = 270
 			move_to(grid_pos + Vector3i(-1,0,0))
 			pass
 		"S":
 			facing_dir = "S"
+			mesh.rotation_degrees.y = 0
 			move_to(grid_pos + Vector3i(0,0,1))
 			pass
 		"D":
